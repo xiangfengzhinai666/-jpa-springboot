@@ -1,0 +1,25 @@
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.130.35.193:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC #8.130.35.193
+    username: xfzn
+    password: Liuda@20020722
+
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      use-new-id-generator-mappings: false  #这个是让数据库中不会增加hibernate表
+    show-sql: true
+
+#  日志配置
+logging:
+  level:
+    root: info
+    com.lrm: debug
+  file:
+    path: log/blog-dev.log
+
+server:
+  port: 8081

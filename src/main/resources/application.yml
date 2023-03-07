@@ -1,0 +1,13 @@
+spring:
+  thymeleaf:
+    mode: HTML
+
+  profiles:
+    active: d
+
+
+debug: true
+
+comment.avatar: /image/avatar.png
+#这里因为管理员头像和其他一样 就这样写看看能不能加载出来,不行
+#comment.avatar:

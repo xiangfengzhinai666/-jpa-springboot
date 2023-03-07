@@ -1,0 +1,151 @@
+/* 看到了添加背景图片 */
+body {
+    background: url("../image/背景.jpg");
+}
+
+.m-padded-tb-mini {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+.m-padded-tb-small {
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+
+.m-padded-tb-bag {
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+
+.m-padded-tb-large {
+    padding-top: 4em !important;
+    padding-bottom: 4em !important;
+}
+
+.m-padded-tb-massive {
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+
+/* 设置一下字体 这一块的字体设置的也有点问题，在页面中不生效*/
+.m-text-thin {
+    font-weight: 300 !important;
+}
+
+.m-text-spaced {
+    letter-spacing: 1px !important;
+}
+
+.m-text-lined {
+    line-height: 1.8 !important;
+}
+
+.m-inline-block {
+    display: inline-block;
+}
+
+.m-padded-mini {
+    padding: 0.2em !important;
+}
+
+.m-padded-tany {
+    padding: 0.3em !important;
+}
+
+.m-padded-big {
+    padding: 0.5em !important;
+}
+
+.m-padded-lr-responsive {
+    padding-left: 4em !important;
+    padding-right: 4em !important;
+}
+
+.m-container-small {
+    max-width: 60em !important;
+    margin: auto !important;
+}
+
+.m-font-size-text-init-title{
+    font-size: 24px;
+    color: #fffffc;
+    align-content: center;
+    font-family:'STXingkai';
+}
+
+
+/* 外部的距离 */
+.m-margin-tb-tiny {
+    margin-top: 0.3em !important;
+    margin-bottom: 0.3em !important;
+}
+
+.m-margin-bottom-mini {
+    margin-bottom: 0.5em !important;
+
+}
+
+
+/* position */
+.m-fixed {
+    position: fixed !important;
+    z-index: 10 !important;
+}
+
+.m-right-bottom {
+    bottom: 0 !important;
+    right: 0 !important;
+}
+
+
+
+.m-black {
+    color: #333;
+}
+
+.m-teal {
+    color: #00B5AD !important;
+}
+
+/* position */
+.m-right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+
+.m-mobile-show {
+    display: none !important;
+}
+
+/* .m-mobile-wide {
+    display: none !important;
+} */
+
+/* shadow */
+.m-shadow-small {
+    -webkit-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 这个要放在后边才有效果 */
+@media screen and (max-width:1000px) {
+    .m-mobile-hide {
+        display: none !important;
+    }
+
+    .m-mobile-show {
+        display: block !important;
+    }
+
+    .m-padded-lr-responsive {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* .m-mobile-wide {
+        width: 100%
+    } */
+}

@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!--引入进来的时候，如果报500就clean再清除一下缓存，重启一下可能就可以了-->
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/animate.compat.css" th:href="@{/css/animate.compat.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/css/animate.min.css" th:href="@{/css/animate.min.css}">
+
+    <!--    引入aplayer-->
+<!--    <link rel="stylesheet" href="../static/lib/aplayer/APlayer.min.css">-->
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+</head>
+
+<body>
+
+    <!-- 顶部 -->
+    <nav th:replace="_fragments :: menu(1)" class="ui inverted segment">
+        <div class="ui container">
+            <!-- stackable是移动端自适用 可以自己调整大小 -->
+            <div class="ui inverted secondary stackable menu m-padded-tb-mini">
+                <h2 class="ui teal header item">Blog</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+
+                <div class="right item m-mobile-hide">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" placeholder="请搜索.....">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 加一个图标 -->
+        <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show"><i class="sidebar icon"></i></a>
+
+    </nav>
+
+    <!-- 中间部分 -->
+    <div class="m-padded-tb-bag animate__hinge">
+        <div class="ui container">
+            <div class="ui stackable grid">
+                <div class="eleven wide column">
+                    <div class="ui top attached segment">
+                        <div class="ui middle aligned two column grid">
+                            <div class="column">
+                                <h3 class="ui teal header">博客</h3>
+                            </div>
+                            <div class="right aligned column">
+                                共<h3 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">14</h3> 篇
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 列表 中间部分呢-->
+                    <div class="ui attached  segment">
+                        <div class="ui padded vertical segment" th:each="blog : ${page.content}">
+                            <div class="ui middle aligned mobile reversed stackable grid" >
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">你真的喜欢香风智乃吗？</a></h3>
+<!--                                    <p class="m-text" th:text="|${blog.description}......|">正确做好真核一件事情的前提是清晰。。...</p>-->
+                                    <!--                                   th:text="|${blog.description}......|" 没有加description属性，这里还不能用-->
+                                    <p class="m-text">正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" th:src="@{${blog.user.avatar}}" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header" th:href="@{/about}" th:text="${blog.user.nickname}">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2023-10-01</span>
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i><span th:text="${blog.views}"> 2233</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany" th:text="${blog.type.name}">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" th:src="@{${blog.firstPicture}}" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+<!--                        themleaf专有的注释，静态页面可以显示，动态页面就不可以显示-->
+<!--/*-->
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui padded vertical segment">
+                            <div class="ui mobile reversed stackable grid">
+                                <div class="eleven wide column">
+                                    <h3 class="ui header">你真的喜欢香风智乃吗？</h3>
+                                    <p>正确做好真核一件事情的前提是清晰。。...</p>
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img src="https://unsplash.it/100/100?image=1005" alt=""
+                                                        class="ui avatar image">
+                                                    <div class="content">
+                                                        <a href="#" class="header">刘大勇</a>
+                                                    </div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i>2023-10-01
+                                                </div>
+
+                                                <div class="item">
+                                                    <i class="eye icon"></i> 2233
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" target="_blank"
+                                                class="ui teal basic label m-padded-tany">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="five wide column">
+                                    <a href="#" target="_blank">
+                                        <img src="https://unsplash.it/700/350?image=1005" alt=""
+                                            class="ui rounded image">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+<!--*/-->
+
+
+                    </div>
+
+
+                    <div class="ui buttom attached segment" th:if="${page.totalPages}>1">
+                        <div class="ui middle aligned two column grid">
+                            <div class="column">
+                                <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini teal basic button">上一页</a>
+                            </div>
+                            <div class="right aligned column">
+                                <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui mini teal basic button">下一页</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 中间部分的右边模块 -->
+                <div class="five wide column">
+
+                    <!-- 分类的页面 -->
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <i class="idea icon"></i>分类
+                                </div>
+                                <div class="right aligned column">
+                                    <a href="#" th:href="@{types/-1}" target="_blank">more <i class="angle double right icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 右边的分类做完了，就剩下右边下边的 从这里开始就行 -->
+                        <!-- 这里写错了 我说咋出不来 -->
+                        <div class="ui teal segment">
+                            <div class="ui fluid vertical menu" >
+                                <a href="#" th:href="@{/types/{id}(id=${type.id})}" target="_blank" class="item" th:each="type : ${types}">
+                                    <span th:text="${type.name}">学习日志</span>
+                                    <div class="ui teal basic basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
+                                </a>
+                            </div>
+                        </div>
+
+<!--/*-->
+                        <div class="ui teal segment">
+                            <div class="ui fluid vertical menu">
+                                <a href="#" class="item">香风智乃
+                                    <div class="ui teal basic basic left pointing label">13</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="ui teal segment">
+                            <div class="ui fluid vertical menu">
+                                <a href="#" class="item">友利奈绪
+                                    <div class="ui teal basic basic left pointing label">13</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="ui teal segment">
+                            <div class="ui fluid vertical menu">
+                                <a href="#" class="item">和泉纱雾
+                                    <div class="ui teal basic basic left pointing label">13</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="ui teal segment">
+                            <div class="ui fluid vertical menu">
+                                <a href="#" class="item">ASUKA
+                                    <div class="ui teal basic basic left pointing label">13</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="ui teal segment">
+                            <div class="ui fluid vertical menu">
+                                <a href="#" class="item">虹夏
+                                    <div class="ui teal basic basic left pointing label">13</div>
+                                </a>
+                            </div>
+                        </div>
+<!--*/-->
+                    </div>
+
+                    <!-- 标签 -->
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <i class="tags icon"></i>标签
+                                </div>
+
+                                <div class="right aligned column">
+                                    <a href="#" th:href="@{tags/-1}" target="_blank">more <i class="angle double right icon"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 标签内容 -->
+                        <div class="ui teal segment">
+<!--                      Attribute “xxx“ appears more than once in element 一个标签有俩个相同的代码      -->
+                            <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny" th:each="tag : ${tags}">
+                                <span th:text="${tag.name}">方法论</span>
+                                <div class="detail" th:text="${#arrays.length(tag.blogs)}">233</div>
+                            </a>
+
+<!--/*-->
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+
+                            <a href="#" target="_blank" class="ui teal basic left pointing label m-margin-tb-tiny">方法论
+                                <div class="detail">233</div>
+                            </a>
+<!--*/-->
+
+                        </div>
+                    </div>
+                    <!-- 最新推荐 -->
+                    <div class="ui segments">
+                        <div class="ui secondary segment">
+                            <i class="bookmark icon"></i>最新推荐
+                        </div>
+
+                        <div class="ui segment" th:each="blog : ${recommendBlogs}">
+                            <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black" th:text="${blog.title}">用户故事(user)</a>
+                        </div>
+
+<!--/*-->
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black">用户故事(user)</a>
+                        </div>
+
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black">用户故事(user)</a>
+                        </div>
+
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black">用户故事(user)</a>
+                        </div>
+
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black">用户故事(user)</a>
+                        </div>
+
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black">用户故事(user)</a>
+                        </div>
+
+                        <div class="ui segment">
+                            <a href="#" target="_blank" class="m-black">用户故事(user)</a>
+                        </div>
+<!--*/-->
+                    </div>
+                    <!-- 二维码 -->
+                    <h4 class="ui horizontal divider header">扫码关注我</h4>
+                    <div class="ui centered card" style="width:11em">
+                        <img src="../static/image/二维2.png" th:src="@{/image/二维2.png}" alt="" class="ui rounded image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    mad我说为啥没有，要把这个div放到想要播放音乐的页面里-->
+<!--    <div id="aplayer"></div>-->
+
+
+
+    <!-- 尾部 -->
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+
+
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/image/二维.jpg" th:src="@{/image/二维.jpg}" class="ui rounded image" style="width:120px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">用户故事（user Story）</a>
+                        <a href="#" class="item">角色简介(anime )</a>
+                        <a href="#" class="item">行走路线（okokoko）</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">邮箱：xfzn2002@163.com</a>
+                        <a href="#" class="item">QQ:2949705042（user Story）</a>
+
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <p>这是我的个人博客，专门分享一些二次元的东西</p>
+                </div>
+                <!-- 画出一条横线 -->
+                <!-- 这一段的格式可能有点不对 画出的横线太短了 -->
+                <div class="ui inverted section divider "></div>
+                <p class=".m-text-thin .m-text-spaced .m-text-lined">Copyright @ 2016-2017 Lirenmi Designed by Lirenmi</p>
+            </div>
+    </footer>
+    <!-- jquery一定要在其他的引用的前面 -->
+
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+<!--    <script src="../static/lib/aplayer/APlayer.min.js"></script>-->
+<!--/*/</th:block>/*/-->
+
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+    </script>
+</body>
+
+</html>

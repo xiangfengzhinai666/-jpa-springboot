@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/animate.compat.css">
+    <link rel="stylesheet" href="../static/css/animate.css">
+    <link rel="stylesheet" href="../static/css/animate.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+
+<body>
+    <!-- 顶部 -->
+    <nav th:replace="_fragments :: menu(5)" class="ui inverted segment">
+        <div class="ui container">
+            <!-- stackable是移动端自适用 可以自己调整大小 -->
+            <div class="ui inverted secondary stackable menu m-padded-tb-mini m-shadow-small">
+                <h2 class="ui teal header item">Blog</h2>
+                <a href="#" class="m-item item m-mobile-hide"><i class="home icon"></i>首页</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="tags icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="clone icon"></i>归档</a>
+                <a href="#" class="m-item item m-mobile-hide"><i class="info icon"></i>关于我</a>
+
+                <div class="right item m-mobile-hide">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" placeholder="请搜索.....">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 加一个图标 -->
+        <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show"><i class="sidebar icon"></i></a>
+
+    </nav>
+
+
+    <!-- 中间的内容 -->
+    <div class=" m-paddedptb-big animate__hinge">
+
+        <div class="ui container">
+
+
+            <div class="ui stackable grid">
+                <div class="eleven wide column">
+                    <img src="../static/image/关于我.jpg" th:src="@{/image/关于我.jpg}" alt="" class="ui rounded image">
+                </div>
+
+                <div class="five wide column">
+                    <div class="ui top attached segment">
+                        <div class="ui header">关于我</div>
+                    </div>
+
+                    <div class="ui attached segment">
+                        <p>一个梦想摧毁世界的中二少年</p>
+                        <p>愿你有一天和你重要的人重逢</p>
+                        <p>想要做一个类似于omufun一样清爽的动漫网站</p>
+                    </div>
+
+                    <div class="ui attached segment">
+                        <div class="ui orange basic left pointing label">编程</div>
+                        <div class="ui orange basic left pointing label">动漫</div>
+                        <div class="ui orange basic left pointing label">宅</div>
+                        <div class="ui orange basic left pointing label">动漫周边</div>
+                    </div>
+
+                    <div class="ui attached segment">
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">springboot</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">java</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">python</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">c</div>
+                        <div class="ui teal basic left pointing label m-margin-tb-tiny">php</div>
+                    </div>
+
+                    <div class="ui bottom attached segment">
+                        <a href="https://github.com/xiangfengzhinai666" class="ui github circular icon button" data-content="全球最大的同性交友网站"
+                        data-position="bottom center"><i class="github icon"></i></a>
+                        <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
+                        <a href="#" class="ui qq circular icon button" data-content="2949705042"
+                            data-position="bottom center"><i class="qq icon"></i></a>
+                    </div>
+
+                    <div class="ui wechat-qr flowing popup transition hidden">
+                        <img src="../static/image/二维2.png" th:src="@{/image/二维2.png}" alt="" class="ui rounded image" style="width:100px">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- 尾部 -->
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted divided stackable grid">
+
+
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <img src="../static/image/二维.jpg" class="ui rounded image" style="width:120px">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="three wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">用户故事（user Story）</a>
+                        <a href="#" class="item">角色简介(anime )</a>
+                        <a href="#" class="item">行走路线（okokoko）</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">邮箱：xfzn2002@163.com</a>
+                        <a href="#" class="item">QQ:2949705042（user Story）</a>
+
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">最新博客</h4>
+                    <p>这是我的个人博客，专门分享一些二次元的东西</p>
+                </div>
+                <!-- 画出一条横线 -->
+                <!-- 这一段的格式可能有点不对 画出的横线太短了 -->
+                <div class="ui inverted section divider "></div>
+                <p class=".m-text-thin .m-text-spaced .m-text-lined">Copyright @ 2016-2017 Lirenmi Designed by Lirenmi
+                </p>
+            </div>
+    </footer>
+    <!-- jquery一定要在其他的引用的前面 -->
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
+
+    <script>
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+
+        //github
+        $('.github').popup();
+        // 不会写的话，直接在文档里面寻找
+        $('.qq').popup();
+
+        $(".wechat").popup({
+            popup: $('.wechat-qr'),
+            on: 'hover',
+            position: 'bottom center'
+        });
+    </script>
+
+
+
+</body>
+
+</html>

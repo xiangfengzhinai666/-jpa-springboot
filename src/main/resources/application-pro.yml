@@ -1,0 +1,25 @@
+spring:
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.130.35.193:3306/blog?rewriteBatchedStatements=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    username: xfzn
+    password: Liuda@20020722
+
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+
+#日志
+logging:
+  level:
+    root: warn
+    com.lrm: info
+  file:
+    path: log/blog-pro.log
+
+
+server:
+  port: 8082
